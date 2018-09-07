@@ -1,3 +1,5 @@
+require_relative './concerns/slugifiable'
+
 class Recommendation < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
