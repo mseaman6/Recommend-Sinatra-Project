@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Recommendations!!</title>
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>Welcome to our shared Recommendations!</h1>
+      <h4>Look around... or leave one :)</h4>
+      <%= yield %>
+    </div>
+
+
+    <p>
+      <form action="/logout" method="GET">
+        <input type="submit" value="Sign Out">
+      </form>
+    </p>
+
+  </body>
+</html>
