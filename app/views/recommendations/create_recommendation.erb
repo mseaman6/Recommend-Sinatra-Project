@@ -1,0 +1,19 @@
+<h1>Create a New Recommendation</h1>
+
+<form action="/recommendations" method="POST">
+  <label>Recommendation Title</label>
+  <input type="text" name="recommendation[title]" id="recommendation_title" placeholder="e.g., book name, handyman name, restaurant name, etc.">
+
+  <label>Recommendation Description</label>
+  <input type="text" name="recommendation[description]" id="recommendation_descriptoin" placeholder="give some more info">
+
+  <label>Recommendation Category</label>
+  <p>Choose the applicable category: </p>
+    <%Category.all.each do |category|%>
+      <!-- Need to make sure that you can only check one of the categories, is that buttons instead? and how to deal with add category; do I need people to add the category first if it does not exist -->
+      <input type="checkbox" name="recommendation[category_id]" id="<%= category.name %>" value="<%= category.id %>"><%=category.name%></input>
+    <%end%>
+  <p>Or create a new one: </p>
+      <!-- input for entering a new category, see note above -->
+  <input type="submit" value="submit">
+</form>
