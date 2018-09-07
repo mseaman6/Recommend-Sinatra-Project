@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class UsersController < ApplicationController
+  use Rack::Flash
 
   get '/signup' do
     if logged_in?
@@ -16,8 +19,9 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect '/recommendations'
     else
-      redirect '/signup'
       #add flash message saying signup failed, please try again
+      flash[:message] = "Your signup was unsuccessful, please make sure that you complete all required fields.  Please try again."
+      redirect '/signup'
     end
   end
 
@@ -37,8 +41,9 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect '/recommendations'
     else
-      redirect '/'
       #add flash message saying signup failed, please try again
+      flash[:message] = "Your login was unsuccessful, please re-enter your information and try again."
+      redirect '/login'
     end
   end
 
