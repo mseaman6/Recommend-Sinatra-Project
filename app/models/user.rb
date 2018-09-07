@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
   validates :email, :presence => true
   validates :password, :presence => true
 
+  extend Slugifiable::ClassMethods
+  include Slugifiable::InstanceMethods
 end

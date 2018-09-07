@@ -3,4 +3,7 @@ class Recommendation < ActiveRecord::Base
   belongs_to :category
 
   validates :title, :presence => true
+
+  extend Slugifiable::ClassMethods
+  include Slugifiable::InstanceMethods
 end
