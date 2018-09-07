@@ -1,2 +1,10 @@
 # Recommend-Sinatra-Project
-This app is to share recommendations
+
+Description:
+This app is to share recommendations.
+
+Install Instructions:
+
+Contributors Guide:
+
+Link to License for Code:
