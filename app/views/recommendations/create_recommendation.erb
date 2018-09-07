@@ -19,8 +19,10 @@
         <input type="checkbox" name="recommendation[category_id]" id="<%= category.name %>" value="<%= category.id %>"><%=category.name%></input>
       <%end%>
     <p>Or create a new one: </p>
-        <!-- input for entering a new category, see note above -->
+      <!-- input for entering a new category, see note above -->
+      <input type="text" name="category[name]" id="category_name" placeholder="Category">
+
   </p>
 
-  <input type="submit" value="Submit">
+  <input type="submit" value="Submit Recommendation">
 </form>
