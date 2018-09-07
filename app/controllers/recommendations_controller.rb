@@ -27,4 +27,13 @@ class RecommendationsController < ApplicationController
     end
   end
 
+  get '/recommendations/:id' do
+    if logged_in?
+      @recommendation = Recommendation.find(params[:id])
+      erb :'recommendations/show_recommendation'
+    else
+      redirect '/login'
+    end
+  end
+
 end
