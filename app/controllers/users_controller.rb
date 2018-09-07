@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       redirect '/recommendations'
     else
       #flash message saying signup failed, please try again
-      flash[:message] = "Your signup was unsuccessful, please make sure that you complete all required fields.  Please try again."
+      flash[:message] = "Your signup was unsuccessful.  Please make sure that you complete all required fields and try again."
       redirect '/signup'
     end
   end
