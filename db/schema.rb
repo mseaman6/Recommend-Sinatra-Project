@@ -14,8 +14,7 @@
 ActiveRecord::Schema.define(version: 20180907144615) do
 
   create_table "categories", force: :cascade do |t|
-    t.string  "name"
-    t.integer "user_id"
+    t.string "name"
   end
 
   create_table "recommendations", force: :cascade do |t|
