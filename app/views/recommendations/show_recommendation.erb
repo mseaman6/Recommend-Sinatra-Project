@@ -1,13 +1,10 @@
 <h2>Recommendation</h2>
 
-  <label>Recommendation Title:</label>
-  <p><%= @recommendation.title %></p>
+    <p><label><b>Recommendation Title</b>: </label> <%= @recommendation.title %></p>
 
-  <label>Recommendation Description:</label>
-  <p><%= @recommendation.description %></p>
+    <p><label><b>Recommendation Description</b>:</label> <%= @recommendation.description %></p>
 
-  <label>Recommendation Category:</label>
-  <p><%= @recommendation.category %></p>
+    <p><label><b>Recommendation Category</b>:</label> <%= @recommendation.category %></p>
 
   <a href="/recommendation/<%= @recommendation.id %>/edit">Edit Recommendation</a>
 
