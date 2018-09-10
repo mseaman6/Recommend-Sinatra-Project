@@ -1,0 +1,9 @@
+This is a list of recommendations for the <b><%= @category.name.upcase %></b> category.
+
+<% if @category.recommendations.count > 0 %>
+  <% @category.recommendations.each do |recommendation| %>
+    <div class="recommendation">
+          <h4><a href="/recommendations/<%= recommendation.id %>"> <%= recommendation.title %></a> recommended by <a href="/users/<%= recommendation.user.id %>"><%= recommendation.user.username %></a></h4>
+    </div>
+  <% end %>
+<% end %>
