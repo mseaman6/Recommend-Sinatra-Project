@@ -1,8 +1,21 @@
 <h2>Welcome, to all of OUR recommendations</h2>
-    <% if Recommendation.count > 0 %>
-      <% Recommendation.all.each do |recommendation| %>
-        <div class="recommendation">
-          <h4><a href="/recommendations/<%= recommendation.id %>"> <%= recommendation.title %></a> recommended by <a href="/users/<%= recommendation.user.id %>"><%= recommendation.user.username %></a></h4>
+
+  <% if Category.count > 0 %>
+    <% Category.all.each do |category| %>
+      <div class="category">
+        <h3><a href="/categories/<%= category.id %>"> <%= category.name %></a></h3>
+          <% category_id = category.id%>
+
+            <% if Recommendation.category.category_id.count > 0 %>
+              <% Recommendation.category.category_id.all.each do |recommendation| %>
+                <div class="recommendation">
+                  <h4><a href="/recommendations/<%= recommendation.id %>"> <%= recommendation.title %></a> recommended by <a href="/users/<%= recommendation.user.id %>"><%= recommendation.user.username %></a></h4>
+                </div>
+              <% end %>
+            <% end %>
+
         </div>
-      <% end %>
+    
     <% end %>
+  <% end %>
+
