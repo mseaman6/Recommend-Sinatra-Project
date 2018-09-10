@@ -1,10 +1,22 @@
 This is a list of recommendations from <b><%= @user.username.upcase %></b>.
 
-<% if @user.recommendations.count > 0 %>
-  <% @user.recommendations.each do |recommendation| %>
-    <div class="recommendation">
-          <h4><a href="/recommendations/<%= recommendation.id %>"> <%= recommendation.title %></h4>
-            <!-- to add category? it would make more sense to have them sorted by category then -->
+<% if @user.categories.count > 0 %>
+  <% @user.categories.each do |category| %>
+    <div class="category">
+      <h3><a href="/categories/<%= category.id %>"> <%= category.name %></a></h3>
+        <% category_id = category.id%>
+
+        <% if @user.recommendations.count > 0 %>
+          <% @user.recommendations.each do |recommendation| %>
+            <% if recommendation.category.id == category_id %>
+            <div class="recommendation">
+                  <h4><a href="/recommendations/<%= recommendation.id %>"> <%= recommendation.title %></h4>
+            </div>
+            <% end %>
+          <% end %>
+        <% end %>
+
     </div>
+
   <% end %>
 <% end %>
