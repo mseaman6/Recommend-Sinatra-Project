@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h2>Recommendation</h2>
 
     <p><label><b>Recommendation Title</b>: </label> <%= @recommendation.title %></p>
@@ -5,10 +9,9 @@
     <p><label><b>Recommendation Description</b>:</label> <%= @recommendation.description %></p>
 
     <p><label><b>Recommendation Category</b>:</label> <%= @recommendation.category.name %></p>
+  <a href="/recommendations/<%= @recommendation.id %>/edit">Edit Recommendation</a>
 
-  <a href="/recommendation/<%= @recommendation.id %>/edit">Edit Recommendation</a>
-
-  <form action="/recommendation/<%= @recommendation.id %>/delete" method="post">
+  <form action="/recommendations/<%= @recommendation.id %>/delete" method="post">
     <input id="hidden" type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete Recommendation">
   </form>
