@@ -17,9 +17,9 @@ class RecommendationsController < ApplicationController
   end
 
   post '/recommendations' do
-    binding.pry
-    if params[category][name]
+    if params[:category]
       @category = Category.create(params[:category])
+      @category.user_ids << session[:user_id]
     end
     @recommendation = Recommendation.create(params[:recommendation])
     @recommendation.user_id = session[:user_id]

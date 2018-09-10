@@ -5,7 +5,7 @@
     <p><label><b>Recommendation Description</b>:</label> <%= @recommendation.description %></p>
 
     <p><label><b>Recommendation Category</b>:</label> <%= @recommendation.category %></p>
-<%binding.pry%>
+
   <a href="/recommendation/<%= @recommendation.id %>/edit">Edit Recommendation</a>
 
   <form action="/recommendation/<%= @recommendation.id %>/delete" method="post">
