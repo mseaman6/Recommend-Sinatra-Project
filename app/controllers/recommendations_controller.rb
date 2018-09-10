@@ -17,8 +17,15 @@ class RecommendationsController < ApplicationController
   end
 
   post '/recommendations' do
+    binding.pry
+    if params[category][name]
+      @category = Category.create(params[:category])
+    end
     @recommendation = Recommendation.create(params[:recommendation])
     @recommendation.user_id = session[:user_id]
+    if @category
+      @recommendation.category_id = @category.id
+    end
     if @recommendation.save
       redirect "/recommendations/#{@recommendation.id}"
     else
