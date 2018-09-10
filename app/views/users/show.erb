@@ -1,1 +1,10 @@
-if desired to have list of all of a user's past recommendations.
+This is a list of recommendations from <b><%= @user.username.upcase %></b>.
+
+<% if @user.recommendations.count > 0 %>
+  <% @user.recommendations.each do |recommendation| %>
+    <div class="recommendation">
+          <h4><a href="/recommendations/<%= recommendation.id %>"> <%= recommendation.title %></h4>
+            <!-- to add category? it would make more sense to have them sorted by category then -->
+    </div>
+  <% end %>
+<% end %>
