@@ -9,7 +9,8 @@
     <p><label><b>Recommendation Description</b>:</label> <%= @recommendation.description %></p>
 
     <p><label><b>Recommendation Category</b>:</label> <%= @recommendation.category.name %></p>
-  <a href="/recommendations/<%= @recommendation.id %>/edit">Edit Recommendation</a>
+
+    <p><a href="/recommendations/<%= @recommendation.id %>/edit">Edit Recommendation</a></p>
 
   <form action="/recommendations/<%= @recommendation.id %>/delete" method="post">
     <input id="hidden" type="hidden" name="_method" value="delete">
