@@ -20,12 +20,11 @@ class RecommendationsController < ApplicationController
   end
 
   post '/recommendations' do
-    if params[:category]
-      @category = Category.create(params[:category])
-    end
+    #or only create new Category if params[:category][:name] not ""
+    @category = Category.create(params[:category])
     @recommendation = Recommendation.create(params[:recommendation])
     @recommendation.user_id = session[:user_id]
-      if @category
+      if @category.save
         @recommendation.category_id = @category.id
       end
     if @recommendation.save
@@ -61,8 +60,12 @@ class RecommendationsController < ApplicationController
   end
 
   post '/recommendations/:id' do
+    @category = Category.create(params[:category])
     @recommendation = Recommendation.find(params[:id])
     @recommendation.update(params[:recommendation])
+    if @category.save
+      @recommendation.category_id = @category.id
+    end
     if @recommendation.save
       redirect "/recommendations/#{@recommendation.id}"
     else
