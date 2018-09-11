@@ -22,13 +22,12 @@ class RecommendationsController < ApplicationController
   post '/recommendations' do
     if params[:category]
       @category = Category.create(params[:category])
-      @category.user_ids << session[:user_id]
     end
     @recommendation = Recommendation.create(params[:recommendation])
     @recommendation.user_id = session[:user_id]
-    if @category
-      @recommendation.category_id = @category.id
-    end
+      if @category
+        @recommendation.category_id = @category.id
+      end
     if @recommendation.save
       redirect "/recommendations/#{@recommendation.id}"
     else
