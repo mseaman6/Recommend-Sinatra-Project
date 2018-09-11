@@ -21,12 +21,10 @@ class RecommendationsController < ApplicationController
 
   post '/recommendations' do
     #or only create new Category if params[:category][:name] not ""
-    @category = Category.create(params[:category])
     @recommendation = Recommendation.create(params[:recommendation])
     @recommendation.user_id = session[:user_id]
-      if @category.save
-        @recommendation.category_id = @category.id
-      end
+    @category = Category.find_or_create_by(:name => params[:category][:name].upcase)
+    @recommendation.category_id = @category.id
     if @recommendation.save
       redirect "/recommendations/#{@recommendation.id}"
     else
@@ -60,12 +58,11 @@ class RecommendationsController < ApplicationController
   end
 
   post '/recommendations/:id' do
-    @category = Category.create(params[:category])
+    binding.pry
     @recommendation = Recommendation.find(params[:id])
     @recommendation.update(params[:recommendation])
-    if @category.save
-      @recommendation.category_id = @category.id
-    end
+    @category = Category.find_or_create_by(:name => params[:category][:name].upcase)
+    @recommendation.category_id = @category.id
     if @recommendation.save
       redirect "/recommendations/#{@recommendation.id}"
     else
@@ -78,9 +75,10 @@ class RecommendationsController < ApplicationController
       @recommendation = Recommendation.find(params[:id])
       if current_user.id == @recommendation.user_id
         @recommendation = Recommendation.destroy(params[:id])
-        flash[:message] = "The recommendation can only be deleted by the user that created it."
+        flash[:message] = "Course deleted successully."
         redirect '/recommendations'
       else
+        flash[:message] = "Course can only be deleted by the user that created it."
         redirect '/recommendations'
       end
     else
