@@ -58,7 +58,6 @@ class RecommendationsController < ApplicationController
   end
 
   post '/recommendations/:id' do
-    binding.pry
     @recommendation = Recommendation.find(params[:id])
     @recommendation.update(params[:recommendation])
     @category = Category.find_or_create_by(:name => params[:category][:name].upcase)
@@ -66,6 +65,7 @@ class RecommendationsController < ApplicationController
     if @recommendation.save
       redirect "/recommendations/#{@recommendation.id}"
     else
+      flash[:message] = "The recommendation failed to save, please try again."
       redirect "/recommendations/#{@recommendation.id}/edit"
     end
   end
