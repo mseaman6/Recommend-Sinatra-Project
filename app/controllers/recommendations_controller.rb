@@ -78,6 +78,7 @@ class RecommendationsController < ApplicationController
       @recommendation = Recommendation.find(params[:id])
       if current_user.id == @recommendation.user_id
         @recommendation = Recommendation.destroy(params[:id])
+        flash[:message] = "The recommendation can only be deleted by the user that created it."
         redirect '/recommendations'
       else
         redirect '/recommendations'
