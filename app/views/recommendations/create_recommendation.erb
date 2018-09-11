@@ -6,23 +6,23 @@
 
 <form action="/recommendations" method="POST">
   <p>
-    <label>Recommendation Title:</label>
+    <label><u>Title</u>:</label>
     <input type="text" name="recommendation[title]" id="recommendation_title" placeholder="e.g., book name, restaurant name, etc.">
   </p>
 
   <p>
-    <label>Recommendation Description:</label>
+    <label><u>Description</u>:</label>
     <input type="text" name="recommendation[description]" id="recommendation_descriptoin" placeholder="tell me more...">
   </p>
 
   <p>
-    <label>Recommendation Category:</label>
+    <label><u>Category</u>: (each recommendation can only have 1 category)</label>
     <p>Choose the applicable category: </p>
       <%Category.all.each do |category|%>
         <!-- Need to make sure that you can only check one of the categories, is that buttons instead? and how to deal with add category; do I need people to add the category first if it does not exist -->
         <input type="radio" name="recommendation[category_id]" id="<%= category.name %>" value="<%= category.id %>"><%=category.name%></input>
       <%end%>
-    <p>Or create a new one: </p>
+    <p>Or create a new one (if you don't see the correct one above): </p>
       <!-- input for entering a new category, see note above -->
       <input type="text" name="category[name]" id="category_name" placeholder="Category">
 
