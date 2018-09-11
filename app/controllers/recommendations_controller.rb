@@ -31,7 +31,6 @@ class RecommendationsController < ApplicationController
     if @recommendation.save
       redirect "/recommendations/#{@recommendation.id}"
     else
-      #add flash message for the new recommendation failed to be created, please try again
       flash[:message] = "The new recommendation failed to be created.  Please make sure that you complete all required fields and try again."
       redirect "/recommendations/new"
     end
@@ -53,7 +52,6 @@ class RecommendationsController < ApplicationController
       if current_user.id == @recommendation.user_id
         erb :'recommendations/edit_recommendation'
       else
-        #need a flash message indicating that the post can only be edited by the user that created it
         flash[:message] = "The recommendation can only be edited by the user that created it."
         redirect "/recommendations/#{params[:id]}"
       end
