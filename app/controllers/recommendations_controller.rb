@@ -20,7 +20,6 @@ class RecommendationsController < ApplicationController
   end
 
   post '/recommendations' do
-    #or only create new Category if params[:category][:name] not ""
     @recommendation = Recommendation.create(params[:recommendation])
     @recommendation.user_id = session[:user_id]
     @category = Category.find_or_create_by(:name => params[:category][:name].upcase)
