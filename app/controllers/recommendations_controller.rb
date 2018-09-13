@@ -23,7 +23,9 @@ class RecommendationsController < ApplicationController
     @recommendation = Recommendation.create(params[:recommendation])
     @recommendation.user_id = session[:user_id]
     @category = Category.find_or_create_by(:name => params[:category][:name].upcase)
-    @recommendation.category_id = @category.id
+    if @category.save
+      @recommendation.category_id = @category.id
+    end
     if @recommendation.save
       redirect "/recommendations/#{@recommendation.id}"
     else
@@ -60,7 +62,9 @@ class RecommendationsController < ApplicationController
     @recommendation = Recommendation.find(params[:id])
     @recommendation.update(params[:recommendation])
     @category = Category.find_or_create_by(:name => params[:category][:name].upcase)
-    @recommendation.category_id = @category.id
+    if @category.save
+      @recommendation.category_id = @category.id
+    end
     if @recommendation.save
       redirect "/recommendations/#{@recommendation.id}"
     else
