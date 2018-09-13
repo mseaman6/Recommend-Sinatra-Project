@@ -12,10 +12,10 @@
 
     <p><a href="/recommendations/<%= @recommendation.id %>/edit">Edit Recommendation</a></p>
 
-  <form action="/recommendations/<%= @recommendation.id %>/delete" method="post">
+  <p><form action="/recommendations/<%= @recommendation.id %>/delete" method="post">
     <input id="hidden" type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete Recommendation">
-  </form>
+  </form></p>
 
 
   <p><a href="/recommendations">Back to Recommendations</a></p>
