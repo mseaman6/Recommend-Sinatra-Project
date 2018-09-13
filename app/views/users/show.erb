@@ -11,7 +11,7 @@
           <% @user.recommendations.each do |recommendation| %>
             <% if recommendation.category.id == category_id %>
             <div class="recommendation">
-                  <li><h4><a href="/recommendations/<%= recommendation.id %>"> <%= recommendation.title %></h4></li>
+                  <li><h4><a href="/recommendations/<%= recommendation.id %>"> <%= recommendation.title %></a></h4></li>
             </div>
             <% end %>
           <% end %>
@@ -21,4 +21,4 @@
 
   <% end %>
 <% end %>
-<div>
+</div>
