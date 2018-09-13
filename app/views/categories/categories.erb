@@ -1,9 +1,11 @@
-This is a current list of Categories for the Recommendations we have.
+<h2> Categories </h2>
 
+<ul>
 <% if Category.count > 0 %>
       <% Category.all.each do |category| %>
         <div class="category">
-          <h4><a href="/categories/<%= category.id %>"> <%= category.name %></a></h4>
+          <li><h4><a href="/categories/<%= category.id %>"> <%= category.name %></a></h4></li>
         </div>
       <% end %>
     <% end %>
+</ul>
