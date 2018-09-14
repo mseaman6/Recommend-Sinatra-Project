@@ -33,7 +33,7 @@
               <ul class="navbar-nav mr-auto">
                 <!-- <li class="nav-item active"> -->
                 <li class="nav-item">
-                  <a class="nav-link" href="/users/<%= session[:user_id] %>">My Recommendations</a>
+                  <a class="nav-link" href="/users/<% if session[:user_id] %><%= session[:user_id] %><% else %> <%= 1%> <% end %>">My Recommendations</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/categories">Categories</a>

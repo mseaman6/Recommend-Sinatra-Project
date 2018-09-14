@@ -20,7 +20,6 @@
           <ul>
           <% if Recommendation.count > 0 %>
             <% Recommendation.all.each do |recommendation| %>
-
               <% if recommendation.category.id == category_id %>
                 <div class="recommendation">
                   <li><h4><a href="/recommendations/<%= recommendation.id %>"> <%= recommendation.title %></a> recommended by <a href="/users/<%= recommendation.user.id %>"><%= recommendation.user.username %></a></h4></li>

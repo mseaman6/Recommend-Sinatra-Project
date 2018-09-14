@@ -78,10 +78,10 @@ class RecommendationsController < ApplicationController
       @recommendation = Recommendation.find(params[:id])
       if current_user.id == @recommendation.user_id
         @recommendation = Recommendation.destroy(params[:id])
-        flash[:message] = "Course deleted successully."
+        flash[:message] = "Recommendation deleted successully."
         redirect '/recommendations'
       else
-        flash[:message] = "Course can only be deleted by the user that created it."
+        flash[:message] = "Recommendation can only be deleted by the user that created it."
         redirect '/recommendations'
       end
     else
