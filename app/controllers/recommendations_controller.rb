@@ -60,21 +60,26 @@ class RecommendationsController < ApplicationController
 
   post '/recommendations/:id' do
     @recommendation = Recommendation.find(params[:id])
-    @recommendation.update(params[:recommendation])
-    @category = Category.find_or_create_by(:name => params[:category][:name].upcase)
-    if @category.save
-      @recommendation.category_id = @category.id
-    end
-    if @recommendation.save
-      redirect "/recommendations/#{@recommendation.id}"
+    if current_user.id == @recommendation.user_id
+      @recommendation.update(params[:recommendation])
+      @category = Category.find_or_create_by(:name => params[:category][:name].upcase)
+      if @category.save
+        @recommendation.category_id = @category.id
+      end
+      if @recommendation.save
+        redirect "/recommendations/#{@recommendation.id}"
+      else
+        flash[:message] = "The recommendation failed to save, please try again."
+        redirect "/recommendations/#{@recommendation.id}/edit"
+      end
     else
-      flash[:message] = "The recommendation failed to save, please try again."
-      redirect "/recommendations/#{@recommendation.id}/edit"
+      flash[:message] = "The recommendation can only be edited by the user that created it."
+      redirect "/recommendations/#{params[:id]}"
     end
   end
 
   delete '/recommendations/:id/delete' do
-    if logged_in?
+    if logged_in? # redirect_if_not_logged_in!; or redirect '/login' unless logged_in?
       @recommendation = Recommendation.find(params[:id])
       if current_user.id == @recommendation.user_id
         @recommendation = Recommendation.destroy(params[:id])

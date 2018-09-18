@@ -21,6 +21,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
+      #@current ||= (same as below)
       User.find_by(:id => session[:user_id])
     end
   end
